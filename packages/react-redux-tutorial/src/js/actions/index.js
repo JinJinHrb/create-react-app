@@ -1,6 +1,7 @@
 // src/js/actions/index.js
-
+import { createAction } from "@reduxjs/toolkit";
 import { ADD_ARTICLE_REQ, DATA_REQUESTED } from "../constants/action-types";
+
 
 /*
 export function addArticle(payload) {
@@ -15,9 +16,10 @@ export function addArticle(payload) {
 }; */
 
 /* use redux-saga */
-export function addArticle(payload) {
+/* export function addArticle(payload) {
     return { type: ADD_ARTICLE_REQ, payload }
-};
+}; */
+export const addArticle = createAction(ADD_ARTICLE_REQ)
 
 /* use redux-thunk
 export function getData() {
@@ -37,6 +39,12 @@ export function getData() {
 } */
 
 /* use redux-saga with arguments */
-export function getData(url) {
+/* export function getData(url) {
     return { type: DATA_REQUESTED, payload: { url } };
+} */
+
+/** 需要转换 payload 格式 */
+const getDataAction = createAction(DATA_REQUESTED)
+export function getData(url) {
+    return getDataAction({url});
 }

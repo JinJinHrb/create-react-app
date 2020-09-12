@@ -18,6 +18,7 @@ const store = createStore(
 export default store; */
 
 /* import { createStore, applyMiddleware, compose } from "redux";
+
 import rootReducer from "../reducers/index";
 import { forbiddenWordsMiddleware } from "../middleware";
 import thunk from "redux-thunk";
@@ -31,7 +32,8 @@ const store = createStore(
 
 export default store; */
 
-import { createStore, applyMiddleware, compose } from "redux";
+/* import { createStore, applyMiddleware, compose } from "redux";
+
 import rootReducer from "../reducers/index";
 import { forbiddenWordsMiddleware } from "../middleware";
 import createSagaMiddleware from "redux-saga";
@@ -50,4 +52,24 @@ const store = createStore(
 
 initialiseSagaMiddleware.run(apiSaga);
 
+export default store; */
+
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+
+import rootReducer from "../reducers/index";
+import { forbiddenWordsMiddleware } from "../middleware";
+import createSagaMiddleware from "redux-saga";
+import apiSaga from "../sagas/api-saga";
+
+const initialiseSagaMiddleware = createSagaMiddleware();
+
+const middleware = [
+  ...getDefaultMiddleware(),
+  forbiddenWordsMiddleware, initialiseSagaMiddleware
+]
+const store = configureStore({
+  reducer: rootReducer,
+  middleware,
+});
+initialiseSagaMiddleware.run(apiSaga);
 export default store;
