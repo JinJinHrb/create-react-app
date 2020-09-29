@@ -3,21 +3,26 @@ import { combineReducers } from 'redux';
 // import { createReducer } from "@reduxjs/toolkit";
 import { ADD_ARTICLE, DATA_LOADED/* , API_ERRORED */ } from "../constants/action-types";
 
-/* createReducer START @ 2020-09-11 20:36:11 */
 /* const initialState = {
     articles: [],
     remoteArticles: []
-};
+}; */
 
-const rootReducer = createReducer(initialState, {
+/* createReducer START @ 2020-09-11 20:36:11 */
+
+/* const rootReducer = createReducer(initialState, {
     [ADD_ARTICLE]: (state, action) => {
         state.articles = state.articles.concat(action.payload);
     },
     [DATA_LOADED]: (state, action) => {
-      state.remoteArticles = state.remoteArticles.concat(action.payload);
+        state.remoteArticles = state.remoteArticles.concat(action.payload);
     },
 }); */
+
 /* createReducer END */
+
+
+/* simple reducer START */
 
 /* function rootReducer(state = initialState, action) {
     if (action.type === ADD_ARTICLE) {
@@ -39,6 +44,16 @@ const rootReducer = createReducer(initialState, {
     return state;
 } */
 
+/* simple reducer END */
+
+
+/* combineReducers related
+function errorHandler(state = initialState, action){
+    if( action.type === API_ERRORED){
+
+    }
+} */
+
 /* combineReducers START */
 
 function articleHandler(state = [], action){
@@ -54,17 +69,10 @@ function dataHandler(state = [], action){
     }
     return state;
 }
-
-/* function errorHandler(state = initialState, action){
-    if( action.type === API_ERRORED){
-
-    }
-} */
-
 const rootReducer = combineReducers({
     articles: articleHandler,
     remoteArticles: dataHandler
-});
+}); 
 
 /* combineReducers END */
 

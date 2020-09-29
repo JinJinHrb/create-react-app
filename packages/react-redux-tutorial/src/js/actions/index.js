@@ -44,7 +44,7 @@ export function getData() {
 } */
 
 /** 需要转换 payload 格式 */
-const getDataAction = createAction(DATA_REQUESTED)
-export function getData(url) {
+export const getDataAction = createAction(DATA_REQUESTED)
+/* export function getData(url) {
     return getDataAction({url});
-}
+} */

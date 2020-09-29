@@ -56,7 +56,8 @@ export default store; */
 
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
-import rootReducer from "../reducers/index";
+// import rootReducer from "../reducers/index"; // annotated @ 2020-09-29 15:27:47
+import demoSlice from '../features/demo/demoSlice';
 import { forbiddenWordsMiddleware } from "../middleware";
 import createSagaMiddleware from "redux-saga";
 import apiSaga from "../sagas/api-saga";
@@ -68,7 +69,10 @@ const middleware = [
   forbiddenWordsMiddleware, initialiseSagaMiddleware
 ]
 const store = configureStore({
-  reducer: rootReducer,
+  // reducer: rootReducer, // annotated @ 2020-09-29 15:27:47
+  reducer: {
+    demo: demoSlice.reducer
+  },
   middleware,
 });
 initialiseSagaMiddleware.run(apiSaga);
