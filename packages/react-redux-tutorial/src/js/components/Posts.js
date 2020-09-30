@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { /* getData */ getDataAction } from "../actions/index";
-import demoSlice from '../features/demo/demoSlice';
+import { demoSlice, getApiData } from '../features/demo/demoSlice';
 const { getData } = demoSlice.actions;
 
 export class Post extends Component {
@@ -13,7 +13,8 @@ export class Post extends Component {
 
     componentDidMount() {
         // this.props.getData();
-        this.props.getData("https://api.valentinog.com/api/link/");
+        // this.props.getData("https://api.valentinog.com/api/link/");
+        this.props.getApiData("https://api.valentinog.com/api/link/");
         // this.props.getDataAction({url: "https://api.valentinog.com/api/link/"});
     }
 
@@ -38,7 +39,15 @@ function mapStateToProps(state) {
     };
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        getData: url => dispatch(getData(url)),
+        getApiData: url => dispatch(getApiData(url))
+    };
+}
+
 export default connect(
     mapStateToProps,
-    { getData /* getDataAction */ }
+    // { getData /* getDataAction */ }
+    mapDispatchToProps
 )(Post);

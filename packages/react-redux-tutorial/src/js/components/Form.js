@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {v4 as uuidv4} from 'uuid';
 // import { addArticle } from "../actions/index";
-import demoSlice from '../features/demo/demoSlice';
+import { demoSlice } from '../features/demo/demoSlice';
 const { addArticle } = demoSlice.actions;
 
 /* function mapDispatchToProps(dispatch) {
